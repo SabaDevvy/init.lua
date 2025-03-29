@@ -1,6 +1,25 @@
 
 vim.g.mapleader = " "
+
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>pl", vim.cmd.Vex)
+vim.keymap.set("n", "<leader>ba", "<C-^>", { noremap = true })
+vim.keymap.set("n", "<leader>te", function()
+  vim.api.nvim_command("vsplit")
+  vim.api.nvim_command("terminal")
+end)
+
+vim.keymap.set("n", "<leader>cp", function()
+  local dir = vim.fn.expand("%:p")
+  print("📂 " .. dir)
+end, { desc = "Show current file directory" })
+vim.keymap.set("n", "<leader>ccp", function()
+  local dir = vim.fn.expand("%:p")
+  vim.fn.setreg("+", dir)
+  print("📋 Copied to clipboard:\n" .. dir)
+end, { desc = "Copy current file directory to clipboard" })
+
+
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
