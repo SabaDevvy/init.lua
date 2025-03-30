@@ -17,6 +17,7 @@ return {
     config = function()
         require("conform").setup({
             formatters_by_ft = {
+                c = { "clang-format" },
             }
         })
         local cmp = require('cmp')
@@ -34,6 +35,7 @@ return {
                 "lua_ls",
                 "rust_analyzer",
                 "gopls",
+                "clangd",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -69,6 +71,19 @@ return {
                                     globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
                                 }
                             }
+                        }
+                    }
+                end,
+                ["clangd"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.clangd.setup {
+                        capabilities = capabilities,
+                        cmd = {
+                            "clangd",
+                            "--background-index",
+                            "--suggest-missing-includes",
+                            "--clang-tidy",
+                            "--header-insertion=iwyu"
                         }
                     }
                 end,

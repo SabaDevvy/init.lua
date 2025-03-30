@@ -1,2 +1,16 @@
+# lazy outputs
 plugin/packer_compiled.lua
 
+# Editor settings (ignored everywhere)
+**/.vscode/
+
+# macOS metadata files (ignored everywhere)
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Tags files
+tags
+TAGS
