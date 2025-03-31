@@ -76,9 +76,21 @@ autocmd('LspAttach', {
     end
 })
 
+
+autocmd("CursorHold", {
+    callback = function()
+        require("nvim-web-devicons").refresh()
+    end,
+})
+
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
 
 vim.g.loaded_ruby_provider = 0
 vim.g.python3_host_prog = vim.fn.expand("~/.config/nvim/venv/bin/python")
+
+vim.opt.termguicolors = true
+
+vim.g.webdevicons_enable = 1
+vim.g.webdevicons_enable_nerdtree = 1  -- Even though we're using nvim-tree
